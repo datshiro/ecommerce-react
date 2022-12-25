@@ -60,6 +60,7 @@ const Filters = ({ closeModal }) => {
       return;
     }
 
+      console.log("isChanged", isChanged, field)
     if (isChanged) {
       dispatch(applyFilter(field));
     } else {
@@ -92,11 +93,12 @@ const Filters = ({ closeModal }) => {
             disabled={isLoading || products.length === 0}
             onChange={onBrandFilterChange}
           >
-            <option value="">All Brands</option>
-            <option value="salt">Salt Maalat</option>
-            <option value="betsin">Betsin Maalat</option>
-            <option value="black">Black Kibal</option>
-            <option value="sexbomb">Sexbomb</option>
+              <option value="">All Brands</option>
+              <option value="Zara>"> Zara </option>
+              <option value="Prada" > Prada </option>
+              <option value="Pedro"> Pedro </option>
+              <option value="H&M"> H&M </option>
+              <option value="P&B"> P&B </option>
           </select>
         )}
       </div>

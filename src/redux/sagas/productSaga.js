@@ -38,6 +38,7 @@ function* handleAction(location, message, status) {
 }
 
 function* productSaga({ type, payload }) {
+    console.log("Type ", type)
   switch (type) {
     case GET_PRODUCTS:
       try {
@@ -45,11 +46,13 @@ function* productSaga({ type, payload }) {
         const state = yield select();
         const result = yield call(firebase.getProducts, payload);
 
-        if (result.products.length === 0) {
+        console.log("result", result)
+
+        if (result?.data?.length === 0) {
           handleError('No items found.');
         } else {
           yield put(getProductsSuccess({
-            products: result.products,
+            products: result.data,
             lastKey: result.lastKey ? result.lastKey : state.products.lastRefKey,
             total: result.total ? result.total : state.products.total
           }));
@@ -179,6 +182,7 @@ function* productSaga({ type, payload }) {
         // clear search data
         yield put(clearSearchState());
 
+        console.log('serachKey', payload.searchKey)
         const state = yield select();
         const result = yield call(firebase.searchProducts, payload.searchKey);
 
